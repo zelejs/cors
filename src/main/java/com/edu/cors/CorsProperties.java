@@ -1,6 +1,5 @@
 package com.edu.cors;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.List;
  * cors.max-age=3600
  * </pre>
  */
-@Data
 @ConfigurationProperties(prefix = "cors")
 public class CorsProperties {
 
@@ -44,7 +42,7 @@ public class CorsProperties {
      * List of allowed headers for CORS requests.
      * Use "*" to allow all headers.
      */
-    private List<String> allowedHeaders = new ArrayList<>();
+    private List<String> allowedHeaders = List.of("*");
 
     /**
      * List of headers that should be exposed to the browser.
@@ -65,4 +63,68 @@ public class CorsProperties {
      * List of path patterns to apply CORS configuration.
      */
     private List<String> pathPatterns = List.of("/**");
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public List<String> getAllowedOrigins() {
+        return allowedOrigins;
+    }
+
+    public void setAllowedOrigins(List<String> allowedOrigins) {
+        this.allowedOrigins = allowedOrigins;
+    }
+
+    public List<String> getAllowedMethods() {
+        return allowedMethods;
+    }
+
+    public void setAllowedMethods(List<String> allowedMethods) {
+        this.allowedMethods = allowedMethods;
+    }
+
+    public List<String> getAllowedHeaders() {
+        return allowedHeaders;
+    }
+
+    public void setAllowedHeaders(List<String> allowedHeaders) {
+        this.allowedHeaders = allowedHeaders;
+    }
+
+    public List<String> getExposedHeaders() {
+        return exposedHeaders;
+    }
+
+    public void setExposedHeaders(List<String> exposedHeaders) {
+        this.exposedHeaders = exposedHeaders;
+    }
+
+    public boolean isAllowCredentials() {
+        return allowCredentials;
+    }
+
+    public void setAllowCredentials(boolean allowCredentials) {
+        this.allowCredentials = allowCredentials;
+    }
+
+    public Long getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(Long maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public List<String> getPathPatterns() {
+        return pathPatterns;
+    }
+
+    public void setPathPatterns(List<String> pathPatterns) {
+        this.pathPatterns = pathPatterns;
+    }
 }

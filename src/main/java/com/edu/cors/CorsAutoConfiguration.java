@@ -3,6 +3,7 @@ package com.edu.cors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,7 +27,7 @@ import org.springframework.web.filter.CorsFilter;
 @AutoConfiguration
 @ConditionalOnWebApplication
 @EnableConfigurationProperties(CorsProperties.class)
-@ConditionalOnCorsEnabled
+@ConditionalOnProperty(prefix = "cors", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class CorsAutoConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(CorsAutoConfiguration.class);
